@@ -6,20 +6,21 @@ const port = 3000
 const exphbs = require('express-handlebars')
 const restaurantList = require('./restaurant.json')
 const restaurants = restaurantList.results
+const Restaurant = require('./models/restaurant')
 
 // connect mongoose
-if(process.env.NODE_ENV !== 'production'){
+if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
 mongoose.connect(process.env.restaurant)
 
 const db = mongoose.connection
 
-db.on('error',()=>{
+db.on('error', () => {
   console.log('error')
 })
 
-db.once('open',()=>{
+db.once('open', () => {
   console.log('connection is work')
 })
 
@@ -28,12 +29,15 @@ app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 // setting static files
-app.use(express.static('public'))
+app.use(express.static('public'), express.urlencoded({ extended: true }))
 
 // routes setting
 // main page
 app.get('/', (req, res) => {
-  res.render('index', { restaurants })
+  Restaurant.find()
+    .lean()
+    .then(restaurant => res.render('index', { restaurant }))
+    .catch(error => console.log(error))
 })
 // detail page
 app.get('/restaurants/:restaurantId', (req, res) => {
@@ -51,7 +55,16 @@ app.get('/search', (req, res) => {
   })
   res.render('index', { restaurants: findRestaurant, keyword })
 })
-
+// create page
+app.get('/restaurant/new', (req, res) => {
+  res.render('create')
+})
+app.post('/createrRestaurant', (req, res) => {
+  const newRestaurant = req.body
+  Restaurant.create(newRestaurant)
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
 
 
 

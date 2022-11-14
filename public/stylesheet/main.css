@@ -103,3 +103,20 @@ header {
   }
 
 }
+
+.plusIcon {
+  font-size: 50px;
+  color: #4592af;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
+
+.plus:hover::before {
+  font-size: 15px;
+  color: #4592af;
+  position: fixed;
+  right: 0px;
+  bottom: 70px;
+  content: 'Create a  new restaurant';
+}

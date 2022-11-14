@@ -1,0 +1,66 @@
+<div class="container">
+  <form action="/createrRestaurant" method="POST">
+    <div class="mb-3">
+      <label for="name" class="form-label">餐廳名稱</label>
+      <input type="text" class="form-control" id="name" aria-describedby="name" name='name' placeholder="OOXX餐廳"
+        required>
+      <div id="nameHelp" class="form-text">required*</div>
+    </div>
+    <div class="mb-3">
+      <label for="name_en" class="form-label">餐廳英文名稱</label>
+      <input type="text" class="form-control" id="name_en" aria-describedby="name_en" name='name_en'
+        placeholder="OOXX Restaurant" required>
+      <div id="name_en_help" class="form-text">required*</div>
+    </div>
+    <div class="mb-3">
+      <label for="category" class="form-label">料理分類</label>
+      <input type="text" class="form-control" id="category" aria-describedby="category" list="categoryOptions"
+        name='category' placeholder="可自行輸入" required>
+      <datalist id="categoryOptions">
+        <option>美式</option>
+        <option>咖啡</option>
+        <option>中東料理</option>
+        <option>日本料理</option>
+        <option>義式餐廳</option>
+        <option>台式料理</option>
+      </datalist>
+      <div id="categoryHelp" class="form-text">required*</div>
+    </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">圖片網址</label>
+      <input type="text" class="form-control" id="image" aria-describedby="image" name='image' placeholder="請提供網址"
+        required>
+      <div id="imageHelp" class="form-text">required*</div>
+    </div>
+    <div class="mb-3">
+      <label for="location" class="form-label">地址</label>
+      <input type="text" class="form-control" id="location" aria-describedby="location" name='location'
+        placeholder="OO市OO路OOXX號" required>
+      <div id="locationHelp" class="form-text">required*</div>
+    </div>
+    <div class="mb-3">
+      <label for="phone" class="form-label">電話號碼</label>
+      <input type="text" class="form-control" id="phone" aria-describedby="phone" name='phone'
+        placeholder="09-66666666 or 02-6666666" required>
+      <div id="phoneHelp" class="form-text">required*</div>
+    </div>
+    <div class="mb-3">
+      <label for="google_map" class="form-label">Google Map 連結</label>
+      <input type="text" class="form-control" id="google_map" aria-describedby="google_map" name='google_map'
+        placeholder="請提供 Google Map 連結" required>
+      <div id="google_map_help" class="form-text">required*</div>
+    </div>
+    <div class="mb-3">
+      <label for="rating" class="form-label">評分</label>
+      <input type="number" class="form-control" id="rating" aria-describedby="rating" name='rating'
+        placeholder="0 ~ 5 顆星" max="5" required>
+      <div id="ratingHelp" class="form-text">required*</div>
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">描述</label>
+      <textarea class="form-control" id="description" rows="3" name="description" required></textarea>
+      <div id="descriptionHelp" class="form-text">required*</div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

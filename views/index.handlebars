@@ -36,11 +36,28 @@
             </span>
           </div>
           <div class="card-footer d-flex justify-content-end flex-wrap">
-            <a href="/restaurants/{{this.id}}/edit"><button class="btn btn-primary btn-sm ms-1">Edit</button></a>
-            <a href="/restaurants/{{this.id}}"><button class="btn btn-primary btn-sm ms-1">Details</button></a>
-            <form action="/restaurants/{{this.id}}?_method=DELETE" method="POST">
-              <button type="submit" class="btn btn-danger btn-sm text-white ms-1">delete</button>
-            </form>
+            <a href="/restaurants/{{this._id}}/edit"><button class="btn btn-primary btn-sm ms-1">Edit</button></a>
+            <a href="/restaurants/{{this._id}}"><button class="btn btn-primary btn-sm ms-1">Details</button></a>
+            <button class="btn btn-danger btn-sm ms-1" data-bs-toggle="modal"
+              data-bs-target="#a{{this._id}}">Delete</button>
+          </div>
+        </div>
+        <div class="modal fade" id="a{{this._id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">您將刪除{{this.name}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                確定將{{this.name}}刪除?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">不要</button>
+                <form action="/restaurants/{{this._id}}/delete" method="post"><button type="submit"
+                    class="btn btn-danger">掰掰</button></form>
+              </div>
+            </div>
           </div>
         </div>
         {{/each}}
@@ -48,6 +65,10 @@
     </div>
   </div>
 </div>
+{{!-- create button --}}
 <div class="plus">
-  <a href="/restaurant/new"><i class="plusIcon fa-solid fa-circle-plus"></i></a>
+  <a href="/restaurant/new"><i class="icon fa-solid fa-circle-plus"></i></a>
+</div>
+<div class="home">
+  <a href="/"><i class="homeIcon fa-solid fa-house"></i></a>
 </div>

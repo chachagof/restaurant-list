@@ -1,21 +1,21 @@
-<div class="container col-5 ">
-  <form action="/createrRestaurant" method="POST">
-    <div class="mb-3 ">
+<div class="container">
+  <form action="/restaurants/{{restaurantEdit._id}}/edit" method="POST" class="row g-3">
+    <div class="mb-3">
       <label for="name" class="form-label">餐廳名稱</label>
       <input type="text" class="form-control" id="name" aria-describedby="name" name='name' placeholder="OOXX餐廳"
-        required>
+        value="{{restaurantEdit.name}}" required>
       <div id="nameHelp" class="form-text">required*</div>
     </div>
-    <div class="mb-3 ">
+    <div class="mb-3">
       <label for="name_en" class="form-label">餐廳英文名稱</label>
       <input type="text" class="form-control" id="name_en" aria-describedby="name_en" name='name_en'
-        placeholder="OOXX Restaurant" required>
+        placeholder="OOXX Restaurant" value="{{restaurantEdit.name_en}}" required>
       <div id="name_en_help" class="form-text">required*</div>
     </div>
-    <div class="mb-3 ">
+    <div class="mb-3">
       <label for="category" class="form-label">料理分類</label>
       <input type="text" class="form-control" id="category" aria-describedby="category" list="categoryOptions"
-        name='category' placeholder="可自行輸入" required>
+        name='category' placeholder="可自行輸入" value="{{restaurantEdit.category}}" required>
       <datalist id="categoryOptions">
         <option>美式</option>
         <option>咖啡</option>
@@ -26,42 +26,45 @@
       </datalist>
       <div id="categoryHelp" class="form-text">required*</div>
     </div>
-    <div class="mb-3 ">
+    <div class="mb-3">
       <label for="image" class="form-label">圖片網址</label>
       <input type="text" class="form-control" id="image" aria-describedby="image" name='image' placeholder="請提供網址"
-        required>
+        value="{{restaurantEdit.image}}" required>
       <div id="imageHelp" class="form-text">required*</div>
     </div>
-    <div class="mb-3 ">
+    <div class="mb-3">
       <label for="location" class="form-label">地址</label>
       <input type="text" class="form-control" id="location" aria-describedby="location" name='location'
-        placeholder="OO市OO路OOXX號" required>
+        placeholder="OO市OO路OOXX號" value="{{restaurantEdit.location}}" required>
       <div id="locationHelp" class="form-text">required*</div>
     </div>
-    <div class="mb-3 ">
+    <div class="mb-3">
       <label for="phone" class="form-label">電話號碼</label>
       <input type="text" class="form-control" id="phone" aria-describedby="phone" name='phone'
-        placeholder="09-66666666 or 02-6666666" required>
+        placeholder="09-66666666 or 02-6666666" value="{{restaurantEdit.phone}}" required>
       <div id="phoneHelp" class="form-text">required*</div>
     </div>
-    <div class="mb-3 ">
+    <div class="mb-3">
       <label for="google_map" class="form-label">Google Map 連結</label>
       <input type="text" class="form-control" id="google_map" aria-describedby="google_map" name='google_map'
-        placeholder="請提供 Google Map 連結" required>
+        placeholder="請提供 Google Map 連結" value="{{restaurantEdit.google_map}}" required>
       <div id="google_map_help" class="form-text">required*</div>
     </div>
-    <div class="mb-3 ">
+    <div class="mb-3">
       <label for="rating" class="form-label">評分</label>
       <input type="number" class="form-control" id="rating" aria-describedby="rating" name='rating'
-        placeholder="0 ~ 5 顆星" max="5" required>
+        placeholder="0 ~ 5 顆星" max="5" value="{{restaurantEdit.rating}}" required>
       <div id="ratingHelp" class="form-text">required*</div>
     </div>
-    <div class="form-floating">
-      <textarea class="form-control" placeholder="Leave a comment here" id="description" name="description"
-        style="height: 100px" required></textarea>
-      <label for="description">介紹一下</label>
+    <div class="mb-3">
+      <label for="description" class="form-label">描述</label>
+      <textarea class="form-control" id="description" rows="3" name="description"
+        required>{{restaurantEdit.description}}</textarea>
       <div id="descriptionHelp" class="form-text">required*</div>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Save</button>
   </form>
+</div>
+<div class="back">
+  <a href="/"><i class="icon fa-solid fa-circle-arrow-left"></i></a>
 </div>

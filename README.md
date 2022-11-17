@@ -47,5 +47,6 @@
 - Node.js 18.12.0
 - Express 4.16.4
 - Express-Handlebars 6.0.6
+- mongoose 6.7.2
 - Bootstrap 5.1.3
 - Font-awesome 5.8.1

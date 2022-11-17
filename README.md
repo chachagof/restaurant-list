@@ -7,9 +7,11 @@
 ### 功能
 
 - 查看所有餐廳
+- 新增喜愛餐廳
 - 瀏覽餐廳的詳細資訊
-- 連結餐廳的地址到 Google 地圖
-- 搜尋特定餐廳
+- 修改喜愛餐廳
+- 刪除名單上餐廳
+- 可依餐廳名稱、口味、地址搜尋到特定餐廳
 
 ## 開始使用
 
@@ -30,7 +32,8 @@
 5. 若看見此行訊息則代表順利運行，打開瀏覽器進入到以下網址
 
    ```bash
-   Listening on http://localhost:3000
+   Gogogooo
+   connection is work
    ```
 
 6. 若欲暫停使用
@@ -44,5 +47,6 @@
 - Node.js 18.12.0
 - Express 4.16.4
 - Express-Handlebars 6.0.6
+- mongoose 6.7.2
 - Bootstrap 5.1.3
 - Font-awesome 5.8.1

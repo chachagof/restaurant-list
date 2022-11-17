@@ -23,9 +23,10 @@
       sort
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-      <li><a class="dropdown-item" href="#">Action</a></li>
-      <li><a class="dropdown-item" href="#">Another action</a></li>
-      <li><a class="dropdown-item" href="#">Something else here</a></li>
+      <li><a class="dropdown-item" href="/sort/AtoZ">A -> Z</a></li>
+      <li><a class="dropdown-item" href="/sort/ZtoA">Z -> A</a></li>
+      <li><a class="dropdown-item" href="/sort/category">類別</a></li>
+      <li><a class="dropdown-item" href="/sort/location">地區</a></li>
     </ul>
   </div>
 </div>
@@ -42,6 +43,9 @@
             <h6 class="card-title mb-1">{{this.name}}</h6>
             <div class="restaurant-category mb-1">
               <i class="fas fa-utensils pr-2"></i> {{this.category}}
+            </div>
+            <div class="restaurant-location mb-1">
+              <i class="fa-regular fa-map "></i> {{this.location}}
             </div>
 
             <span class="badge badge-pill badge-danger font-weight-normal">

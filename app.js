@@ -36,7 +36,7 @@ app.use(express.static('public'), express.urlencoded({ extended: true }))
 app.get('/', (req, res) => {
   Restaurant.find()
     .lean()
-    .then(restaurant => res.render('index', { restaurant }))
+    .then(restaurants => res.render('index', { restaurants }))
     .catch(error => console.log(error))
 })
 // detail page
@@ -58,10 +58,9 @@ app.get('/search', (req, res) => {
     .lean()
     .then(restaurants => {
       const restaurantFilter = restaurants.filter(data => {
-        // 
         return data.name.toLowerCase().includes(keyword) || data.category.includes(keyword) || data.location.trim().includes(keyword)
       })
-      return res.render('index', { restaurant: restaurantFilter })
+      return res.render('index', { restaurants: restaurantFilter, keyword })
     })
     .catch(error => console.log(error))
 })

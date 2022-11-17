@@ -1,18 +1,8 @@
-const mongoose = require('mongoose')
 const restaurant = require('../restaurant')
 const restaurantList = require('../../restaurant.json')
 const restaurantSeedInfo = restaurantList.results
 
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config()
-}
-mongoose.connect(process.env.restaurant)
-
-const db = mongoose.connection
-
-db.on('error', () => {
-  console.log('error')
-})
+const db = require('../../config/mongoose')
 
 db.once('open', () => {
   restaurantSeedInfo.forEach(element => {

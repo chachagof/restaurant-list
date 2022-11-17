@@ -1,6 +1,7 @@
 // require packages used in the project
 const express = require('express')
 const mongoose = require('mongoose')
+const methodOverride = require('method-override')
 const app = express()
 const port = 3000
 const exphbs = require('express-handlebars')
@@ -29,7 +30,7 @@ app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 // setting static files
-app.use(express.static('public'), express.urlencoded({ extended: true }))
+app.use(express.static('public'), express.urlencoded({ extended: true }), methodOverride('_method'))
 
 // routes setting
 // main page
@@ -84,7 +85,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.post('/restaurants/:restaurantId/edit', (req, res) => {
+app.put('/restaurants/:restaurantId', (req, res) => {
   const id = req.params.restaurantId
   const body = req.body
   return Restaurant.findById(id)
@@ -105,7 +106,7 @@ app.post('/restaurants/:restaurantId/edit', (req, res) => {
 })
 
 // delete page 
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .then(restaurant => restaurant.remove())

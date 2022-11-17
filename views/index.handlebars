@@ -1,18 +1,32 @@
 <!-- search bar -->
-<div class="container search-bar">
-  <div class="search-bar-outer">
-    <div class="search-bar-inner">
-      <form action="/search">
-        <h4 class="mb-2">尋找餐廳：</h4>
-        <div class="input-group">
-          <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類、地址"
-            aria-label="Restaurant Name..." value="{{#if keyword}}{{keyword}}{{/if}}" aria-describedby="search-button">
-          <div class="input-group-append">
-            <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
+<div class="container search-bar d-sm-flex justify-content-around">
+  <div class="w-30 p-3">
+    <div class="search-bar-outer ">
+      <div class="search-bar-inner">
+        <form action="/search">
+          <h4 class="mb-2">尋找餐廳：</h4>
+          <div class="input-group">
+            <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類、地址"
+              aria-label="Restaurant Name..." value="{{#if keyword}}{{keyword}}{{/if}}"
+              aria-describedby="search-button">
+            <div class="input-group-append">
+              <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
+  </div>
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+      aria-expanded="false">
+      sort
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
   </div>
 </div>
 
@@ -54,7 +68,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">不要</button>
-                <form action="/restaurants/{{this._id}}/delete" method="post"><button type="submit"
+                <form action="/restaurants/{{this._id}}?_method=DELETE" method="post"><button type="submit"
                     class="btn btn-danger">掰掰</button></form>
               </div>
             </div>
@@ -66,9 +80,7 @@
   </div>
 </div>
 {{!-- create button --}}
-<div class="plus">
-  <a href="/restaurant/new"><i class="icon fa-solid fa-circle-plus"></i></a>
-</div>
+
 <div class="home">
   <a href="/"><i class="homeIcon fa-solid fa-house"></i></a>
 </div>

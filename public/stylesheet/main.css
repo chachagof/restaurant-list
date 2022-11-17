@@ -104,45 +104,19 @@ header {
 
 }
 
-.icon {
-  font-size: 50px;
+.homeIcon {
+  font-size: 40px;
   color: #4592af;
   position: fixed;
   right: 20px;
   bottom: 20px;
 }
 
-.homeIcon {
-  font-size: 45px;
-  color: #4592af;
-  position: fixed;
-  right: 80px;
-  bottom: 20px;
-}
-
-.plus:hover::before {
-  font-size: 15px;
-  color: #4592af;
-  position: fixed;
-  right: 5px;
-  bottom: 70px;
-  content: 'Create a  new restaurant';
-}
-
-.back:hover::before {
-  font-size: 15px;
-  color: #4592af;
-  position: fixed;
-  right: 5px;
-  bottom: 70px;
-  content: 'Back to menu';
-}
-
 .home:hover::before {
   font-size: 15px;
   color: #4592af;
   position: fixed;
-  right: 70px;
+  right: 5px;
   bottom: 70px;
   content: 'Back to menu';
 }

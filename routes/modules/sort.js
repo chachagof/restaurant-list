@@ -6,7 +6,6 @@ const restaurants = restaurantList.results
 const Restaurant = require('../../models/restaurant')
 
 // sort route
-// AtoZ
 router.get('/:sortWay', (req, res) => {
   const sortWay = req.params.sortWay
   const sortWays = [

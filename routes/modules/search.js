@@ -9,10 +9,11 @@ const Restaurant = require('../../models/restaurant')
 router.get('/', (req, res) => {
   const keywords = req.query.keyword
   const keyword = keywords.trim().toLowerCase()
+  const userId = req.user._id
   if (keyword === '' || !keyword) {
     return res.redirect('/')
   }
-  return Restaurant.find()
+  return Restaurant.find({userId})
     .lean()
     .then(restaurants => {
       const restaurantFilter = restaurants.filter(data => {

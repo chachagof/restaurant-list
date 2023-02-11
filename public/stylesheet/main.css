@@ -109,19 +109,19 @@ header {
 
 }
 
-.homeIcon {
+.plusIcon {
   font-size: 40px;
   color: #4592af;
   position: fixed;
-  right: 20px;
-  bottom: 20px;
+  right: 30px;
+  bottom: 30px;
 }
 
-.home:hover::before {
+.plus:hover::before {
   font-size: 15px;
   color: #4592af;
   position: fixed;
-  right: 5px;
-  bottom: 70px;
-  content: 'Back to menu';
+  right: 10px;
+  bottom: 75px;
+  content: 'Create Yourself';
 }

@@ -2,35 +2,38 @@ const passport = require('passport')
 const Localstrategy = require('passport-local').Strategy
 const User = require('../models/user')
 
-module.exports = (app)=>{
+module.exports = (app) => {
   app.use(passport.initialize())
   app.use(passport.session())
 
-  passport.use(new Localstrategy(
-    {usernameField:'email'},
-    (email,password,done)=>{
-      User.findOne({email})
-        .then(user=>{
-          if(!user){
-            return done(null, false, { message: 'That email is not registered!'})
+  passport.use(new Localstrategy({
+    usernameField: 'email',
+    passReqToCallback: true
+  },
+    (req, email, password, done) => {
+      User.findOne({ email })
+        .then(user => {
+          if (!user) {
+            return done(null, false, req.flash('warning_msg', 'That email is not registered!'))
           }
-          if(user.password !== password){
-            return done(null, false, { message: 'Email or Password incorrect.' })
+          // { message: 'Email or Password incorrect.' }
+          if (user.password !== password) {
+            return done(null, false, req.flash('warning_msg', 'Email or Password incorrect.'))
           }
-          return done(null,user)
+          return done(null, user)
         })
-        .catch(err=>done(err,false))
+        .catch(err => done(err, false))
     }
-    ))
+  ))
 
-  passport.serializeUser((user,done)=>{
-    done(null,user.id)
+  passport.serializeUser((user, done) => {
+    done(null, user.id)
   })
 
-  passport.deserializeUser((id,done)=>{
+  passport.deserializeUser((id, done) => {
     User.findById(id)
       .lean()
-      .then(user=>done(null,user))
-      .catch(err=>done(err,false))
+      .then(user => done(null, user))
+      .catch(err => done(err, false))
   })
 }

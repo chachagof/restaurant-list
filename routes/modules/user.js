@@ -47,8 +47,6 @@ router.post('/register', (req, res) => {
             .then(() => res.redirect('/'))
             .catch(err => console.log(err))
         })
-      
-      
     })
 })
 

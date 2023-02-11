@@ -1,12 +1,18 @@
 const passport = require('passport')
 const Localstrategy = require('passport-local').Strategy
+const Facebookstrategy = require('passport-facebook').Strategy
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
 module.exports = (app) => {
   app.use(passport.initialize())
   app.use(passport.session())
 
+  // local
   passport.use(new Localstrategy({
     usernameField: 'email',
     passReqToCallback: true
@@ -17,9 +23,9 @@ module.exports = (app) => {
           if (!user) {
             return done(null, false, req.flash('warning_msg', 'That email is not registered!'))
           }
-          return bcrypt.compare(password , user.password)
-            .then(isMatch =>{
-              if(!isMatch){
+          return bcrypt.compare(password, user.password)
+            .then(isMatch => {
+              if (!isMatch) {
                 return done(null, false, req.flash('warning_msg', 'Email or Password incorrect.'))
               }
               return done(null, user)
@@ -27,6 +33,33 @@ module.exports = (app) => {
         })
         .catch(err => done(err, false))
     }
+  ))
+
+  // facebook
+  passport.use(new Facebookstrategy({
+    clientID: process.env.FACEBOOK_ID,
+    clientSecret: process.env.FACEBOOK_SECRET,
+    callbackURL: process.env.FACEBOOK_CALLBACK,
+    profileFields: ['email', 'displayName']
+  }, (accessToken, refreshToken, profile, done) => {
+    const { name, email } = profile._json
+    User.findOne({ email })
+      .then(user => {
+        if (user) { return done(null, user) }
+        const randomPassword = Math.random().toString(36).slice(-8)
+        bcrypt.genSalt(10)
+          .then(salt => bcrypt.hash(randomPassword, salt))
+          .then(hash => {
+            User.create({
+              name,
+              email,
+              password: hash
+            })
+          })
+          .then(user => done(null, user))
+          .catch(err => done(err, false))
+      })
+  }
   ))
 
   passport.serializeUser((user, done) => {

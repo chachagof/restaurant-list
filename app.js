@@ -1,13 +1,17 @@
 // require packages used in the project
 const express = require('express')
 const methodOverride = require('method-override')
-const app = express()
-const port = 3000
 const exphbs = require('express-handlebars')
 const routes = require('./routes/index')
 const session = require('express-session')
 const usePassport = require('./config/passport')
 const flash = require('connect-flash')
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+const PORT = process.env.PORT
+const app = express()
 
 require('./config/mongoose')
 
@@ -20,7 +24,7 @@ app.use(express.static('public'), express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
 app.use(session({
-  secret: 'ThisIsSecret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
@@ -39,6 +43,6 @@ app.use((req, res, next) => {
 
 app.use(routes)
 
-app.listen(port, () => {
-  console.log('Gogogooo')
+app.listen(PORT, () => {
+  console.log(`GOgogo http://localhost:${PORT}`)
 })

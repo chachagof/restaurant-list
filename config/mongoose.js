@@ -13,7 +13,7 @@ db.on('error', () => {
 })
 
 db.once('open', () => {
-  console.log('connection is work')
+  console.log('mongoose connection is work')
 })
 
 module.exports = db
